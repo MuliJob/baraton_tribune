@@ -1,9 +1,7 @@
-# example/urls.py
+"""Application urls"""
 from django.urls import path
-
-from example.views import index
-
+from .views import AboutView
 
 urlpatterns = [
-    path('', index),
+    path("about/", AboutView.as_view()),
 ]
