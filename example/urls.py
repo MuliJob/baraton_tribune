@@ -1,7 +1,8 @@
 """Application urls"""
 from django.urls import path
-from .views import AboutView
+from . import views
 
 urlpatterns = [
-    path("", AboutView.as_view()),
+    path("", views.HomeView.as_view()),
+    path("about", views.AboutView.as_view()),
 ]
