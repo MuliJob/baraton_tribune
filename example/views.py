@@ -14,6 +14,10 @@ class PostDetail(TemplateView):
     """Post Detail Page"""
     template_name = "post-details.html"
 
+class AuthorDetail(TemplateView):
+    """Author Detail Page"""
+    template_name = "author-profile.html"
+
 class AboutView(TemplateView):
     """About page"""
     template_name = "about.html"
