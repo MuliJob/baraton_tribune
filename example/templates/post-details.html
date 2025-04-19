@@ -66,10 +66,12 @@
                     <div class="author-info">
                       <div class="author-details">
                         <img src="{% static 'assets/img/person/person-f-8.webp' %}" alt="Author" class="author-img">
-                        <div class="info">
-                          <h4>Michael Chen</h4>
-                          <span class="role">Senior Web Developer</span>
-                        </div>
+                        <a href="{% url 'author' %}">
+                          <div class="info">
+                            <h4>Michael Chen</h4>
+                            <span class="role">Senior Web Developer</span>
+                          </div>
+                        </a>
                       </div>
                       <div class="post-meta">
                         <span class="date"><i class="bi bi-calendar3"></i> Mar 15, 2025</span>
@@ -220,7 +222,7 @@
                           <i class="bi bi-globe"></i>
                           <span>sarahanderson.dev</span>
                         </a>
-                        <a href="#" class="more-posts">
+                        <a href="{% url 'author' %}" class="more-posts">
                           Read More from Sarah <i class="bi bi-arrow-right"></i>
                         </a>
                       </div>

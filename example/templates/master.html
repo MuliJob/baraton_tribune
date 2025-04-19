@@ -72,12 +72,10 @@
             <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
             <li><a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
             <li><a href="{% url 'category' %}" class="{% if request.resolver_match.url_name == 'category' %}active{% endif %}">Category</a></li>
-            <li><a href="author-profile.html">Author Profile</a></li>
-            <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <li class="dropdown"><a href="#"><span>Donate</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'category' %}" class="{% if request.resolver_match.url_name == 'category' %}active{% endif %}">Category</a></li>
-                <li><a href="author-profile.html">Author Profile</a></li>
                 <li><a href="search-results.html">Search Results</a></li>
                 <li><a href="404.html">404 Not Found Page</a></li>
 
