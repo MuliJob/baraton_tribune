@@ -90,7 +90,7 @@
                 </li>
               </ul>
             </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
