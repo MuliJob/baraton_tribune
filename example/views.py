@@ -6,6 +6,10 @@ class HomeView(TemplateView):
     """Home page"""
     template_name = "index.html"
 
+class CategoryView(TemplateView):
+    """Category Page"""
+    template_name = "category.html"
+
 class PostDetail(TemplateView):
     """Post Detail Page"""
     template_name = "post-details.html"
