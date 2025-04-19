@@ -21,3 +21,7 @@ class AuthorDetail(TemplateView):
 class AboutView(TemplateView):
     """About page"""
     template_name = "about.html"
+
+class ContactView(TemplateView):
+    """Contact page"""
+    template_name = "contact.html"
