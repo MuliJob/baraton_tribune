@@ -41,11 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_use_email_as_username.apps.DjangoUseEmailAsUsernameConfig',
+    'custom_user.apps.CustomUserConfig',
 
     'example',
     'django_browser_reload',
     'bootstrap5'
 ]
+
+AUTH_USER_MODEL = 'custom_user.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
