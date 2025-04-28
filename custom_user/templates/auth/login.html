@@ -1,0 +1,63 @@
+{% extends 'master.html' %} {% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="row w-100">
+        <div class="col-lg-4 col-md-6 mx-auto">          
+            <div class="card shadow-lg border-0 rounded-lg mt-5">             
+                <div class="card-body p-4">                  
+                    <h2 class="text-center text-accent fw-bold">Login</h2>
+                    <p class="text-center text-muted">Access your account</p>
+
+                    <form method="POST" autocomplete="off">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                {{ form.username }}
+                            </div>
+                            <div class="text-danger">
+                              {{ form.username.errors }}
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-key"></i></span>
+                                {{ form.password }}
+                            </div>
+                            <div class="text-danger">
+                              {{ form.password.errors }}
+                          </div>
+                        </div>
+
+                        <button type="submit" class="btn w-100" style="background-color: #f75815; color: white;">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <a href="" class="text-decoration-none">Forgot Password?</a>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="{% url 'register' %}" class="text-decoration-none text-primary">Register</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</body>
+</html>
+{% endblock content %}

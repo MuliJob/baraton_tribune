@@ -1,0 +1,69 @@
+{% extends 'master.html' %} {% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+</head>
+<body>
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="row w-100">
+        <div class="col-lg-4 col-md-6 mx-auto">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">              
+                <div class="card-body p-4">                  
+                    <h2 class="text-center text-accent fw-bold">Register</h2>
+                    <p class="text-center text-muted">Create your account</p>
+
+                    <form method="POST" autocomplete="off">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                                {{ form.email }}
+                            </div>
+                            <div class="text-danger">
+                              {{ form.email.errors }}
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password1" class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                                {{ form.password1 }}
+                            </div>
+                            <div class="text-danger">
+                              {{ form.password1.errors }}
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Confirm Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-check-circle-fill"></i></span>
+                                {{ form.password2 }}
+                            </div>
+                            <div class="text-danger">
+                              {{ form.password2.errors }}
+                          </div>
+                        </div>
+
+                        <button type="submit" class="btn btn- w-100" style="background-color: #f75815; color: white;">
+                          <i class="bi bi-person-plus-fill"></i> Register
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="{% url 'login' %}" class="text-decoration-none text-primary">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+{% endblock content %}
