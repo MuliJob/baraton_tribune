@@ -1,8 +1,7 @@
 """Custom User Views"""
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status, permissions
+from rest_framework import permissions
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -35,7 +34,7 @@ class RegisterAPIView(APIView):
         if form.is_valid():
             user = form.save(commit=False)
             password = form.cleaned_data['password1']
-            user.set_password(password)  # Hash the password
+            user.set_password(password)
             user.save()
 
             messages.success(request, 'Account created successfully! Please log in.')
@@ -62,7 +61,7 @@ class LoginAPIView(APIView):
         form = LoginForm(request, data=request.POST)
 
         if form.is_valid():
-            username = form.cleaned_data.get('username')  # ✅ Safe now
+            username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
 
             user = authenticate(request, username=username, password=password)
@@ -70,22 +69,16 @@ class LoginAPIView(APIView):
             if user is not None:
                 login(request, user)
 
-                # Generate tokens
                 tokens = get_tokens_for_user(user)
                 request.session['access_token'] = tokens['access']
                 request.session['refresh_token'] = tokens['refresh']
 
-                print(f"Access Token: {tokens['access']}")
-                print(f"Refresh Token: {tokens['refresh']}")
                 messages.success(request, f"Logged in successfully. Welcome {user.email}!")
                 return redirect('home')
             else:
-                messages.error(request, "Invalid email or password.")  # fallback
+                messages.error(request, "Invalid email or password.")
         else:
-            # 🔥 ADD better debugging here
-            error_list = [f"{field}: {error}" for field, errors in form.errors.items() for error in errors]
-            error_message = " | ".join(error_list)
-            messages.error(request, f"Login failed. Details: {error_message}")
+            messages.error(request, "Login failed. Please check your credentials.")
 
         return render(request, 'auth/login.html', {'form': form, 'request': request})
 
@@ -95,24 +88,39 @@ class LogoutAPIView(APIView):
     """API view for user logout"""
     permission_classes = [permissions.IsAuthenticated]
 
+    def get(self, request):
+        """Handle logout via GET request (for template links)"""
+        # Clear session tokens
+        if 'access_token' in request.session:
+            del request.session['access_token']
+        if 'refresh_token' in request.session:
+            del request.session['refresh_token']
+
+        logout(request)
+
+        messages.success(request, "Logged out successfully.")
+        return redirect('login')
+
     def post(self, request):
         """Handle user logout"""
         try:
-            refresh_token = request.data.get("refresh")
-            if not refresh_token:
-                return Response({"error": "Refresh token is required."},
-                                status=status.HTTP_400_BAD_REQUEST)
+            refresh_token = request.data.get("refresh") or request.session.get('refresh_token')
+            if refresh_token:
+                token = RefreshToken(refresh_token)
+                token.blacklist()
 
-            token = RefreshToken(refresh_token)
-            token.blacklist()
+            if 'access_token' in request.session:
+                del request.session['access_token']
+            if 'refresh_token' in request.session:
+                del request.session['refresh_token']
 
-            # Also logout the user
             logout(request)
 
-            return Response({"message": "Logout successful."},
-                            status=status.HTTP_205_RESET_CONTENT)
+            messages.success(request, "Logged out successfully.")
+            return redirect('login')
         except KeyError as e:
-            return Response({"error": f"Missing or invalid refresh token. {e}"},
-                            status=status.HTTP_400_BAD_REQUEST)
+            messages.error(request, f"Session key error during logout: {e}")
+            return redirect('home')
         except ValueError as e:
-            return Response({"error": f"Invalid token. {e}"}, status=status.HTTP_400_BAD_REQUEST)
+            messages.error(request, f"Token processing error during logout: {e}")
+            return redirect('home')
