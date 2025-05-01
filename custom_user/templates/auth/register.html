@@ -19,7 +19,7 @@
                 <span class="input-group-text" style="background-color: var(--surface-color); color: var(--default-color); border: 1px solid #444;">
                   <i class="bi bi-envelope-fill"></i>
                 </span>
-                {{ form.email }}
+                <input type="email" name="email" class="form-control" id="id_email" placeholder="Enter your email" value="{{ form.email.value|default:'' }}">
               </div>
               <div class="text-danger">
                 {{ form.email.errors }}
@@ -32,7 +32,7 @@
                 <span class="input-group-text" style="background-color: var(--surface-color); color: var(--default-color); border: 1px solid #444;">
                   <i class="bi bi-lock-fill"></i>
                 </span>
-                {{ form.password1 }}
+                <input type="password" name="password1" class="form-control" id="id_password1" placeholder="Enter your password">
               </div>
               <div class="text-danger">
                 {{ form.password1.errors }}
@@ -45,7 +45,7 @@
                 <span class="input-group-text" style="background-color: var(--surface-color); color: var(--default-color); border: 1px solid #444;">
                   <i class="bi bi-check-circle-fill"></i>
                 </span>
-                {{ form.password2 }}
+                <input type="password" name="password2" class="form-control" id="id_password2" placeholder="Confirm your password">
               </div>
               <div class="text-danger">
                 {{ form.password2.errors }}
