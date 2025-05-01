@@ -40,7 +40,7 @@ class RegisterAPIView(APIView):
             messages.success(request, 'Account created successfully! Please log in.')
             return redirect('login')
         else:
-            messages.error(request, 'Please correct the errors below.')
+            messages.error(request, 'Please correct the error below!')
             return render(request, 'auth/register.html', {'form': form})
 
 
@@ -78,7 +78,7 @@ class LoginAPIView(APIView):
             else:
                 messages.error(request, "Invalid email or password.")
         else:
-            messages.error(request, "Login failed. Please check your credentials.")
+            messages.error(request, "Login failed. Please correct the error below!")
 
         return render(request, 'auth/login.html', {'form': form, 'request': request})
 
