@@ -21,36 +21,30 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
-  /* Global Colors */
-  --background-color: #121212; /* Dark, soft background */
-  --default-color: #e0e0e0; /* Light gray text for readability */
-  --heading-color: #ffffff; /* Pure white headings for contrast */
-  --accent-color: #f75815; /* Bright, vibrant accent color */
-  --surface-color: #1e1e1e; /* Slightly lighter than background for cards and sections */
-  --contrast-color: #000000; /* Grey color for text over accent surfaces */
+  /* Base Dark Theme Colors */
+  --background-color: #121212;          /* Deep dark background */
+  --surface-color: #1e1e1e;             /* Slightly raised card/section surface */
+  --default-color: #d0d0d0;             /* Soft light gray text */
+  --heading-color: #ffffff;             /* Bright white for headings */
+  --accent-color: #f75815;              /* Vibrant orange/red accent */
+  --contrast-color: #000000;            /* Used for text on light backgrounds if needed */
 
   /* Navigation Menu Colors */
-  --nav-color: #e0e0e0; /* Light gray nav links */
-  --nav-hover-color: #f75815; /* Same accent color for hover */
-  --nav-mobile-background-color: #1a1a1a; /* Slightly lighter dark background for mobile nav */
-  --nav-dropdown-background-color: #1e1e1e; /* Dropdowns slightly lifted with surface color */
-  --nav-dropdown-color: #cccccc; /* Softer light text for dropdown items */
-  --nav-dropdown-hover-color: #f75815; /* Accent color on hover */
+  --nav-color: #cfcfcf;                 /* Navigation links - slightly dimmer than headings */
+  --nav-hover-color: var(--accent-color); /* Accent hover */
+  --nav-mobile-background-color: #181818; /* Mobile nav - slightly raised from background */
+  --nav-dropdown-background-color: #232323; /* Dropdown - slightly elevated */
+  --nav-dropdown-color: #bbbbbb;        /* Softer light for dropdown text */
+  --nav-dropdown-hover-color: var(--accent-color); /* Accent hover on dropdown */
+
+  /* Button & Border Colors (optional) */
+  --border-color: #2a2a2a;              /* Subtle border for cards, inputs */
+  --button-background: #2c2c2c;         /* Buttons with slightly lighter background */
+  --button-hover-background: #383838;   /* Slight lift on hover */
+  --input-background: #1a1a1a;          /* Form field backgrounds */
+  --input-text-color: var(--default-color); /* Text inside inputs */
 }
 
-/* Color Presets */
-.light-background {
-  --background-color: #121212;
-  --surface-color: #1e1e1e;
-}
-
-.dark-background {
-  --background-color: #121212;
-  --default-color: #e0e0e0;
-  --heading-color: #ffffff;
-  --surface-color: #1e1e1e;
-  --contrast-color: #000000;
-}
 
 
 /* Smooth scroll */

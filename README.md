@@ -19,7 +19,7 @@ Overall, Baraton Tribune aims to be a go-to source for news and information, fos
 Clone the repository to your local machine:
 ```bash
 git clone <repository-url>
-cd django-hello-world
+cd baraton_tribune
 # Create a virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
